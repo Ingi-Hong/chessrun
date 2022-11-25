@@ -4,27 +4,26 @@ import {
   CardContent,
   Typography,
   CardActionArea,
-  Link
+  Link,
 } from "@mui/material";
 import { CARDMAXWIDTH, CARDHEIGHT } from "./Contentvars";
 
-function Videocard(props) {
-  let color = "#FAF9F6";
-  let textColor = "black";
+function Videocard(object) {
+  let props = object.item;
+
+  let color = "white";
+  let textColor = "#474747";
 
   if (props.startAs === "black") {
     color = "#212121";
     textColor = "#FAF9F6";
   }
 
-  console.log(props.link)
-
   return (
     <Card
       sx={{ maxWidth: CARDMAXWIDTH, backgroundColor: color, color: textColor }}
     >
       <CardActionArea component={Link} href={props.link} target="_blank">
-
         <CardMedia
           component="img"
           alt={props.name}

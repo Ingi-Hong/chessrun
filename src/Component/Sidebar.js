@@ -1,32 +1,35 @@
 import {
   Box,
+  Divider,
   Drawer,
+  IconButton,
   List,
   ListItem,
+  ThemeProvider,
   Toolbar,
-  IconButton,
-  Divider,
   Typography,
 } from "@mui/material";
-import data from "./Sidebarcontent";
-import { TITLE, DRAWERWIDTH } from "./Contentvars";
+import MyTheme from "../Theme/Theme";
+import { DRAWERWIDTH, TITLE } from "./Contentvars";
+import Accordion from "./Accordion";
+import SidebarContents from "./Sidebarcomponents/Sidebar-contents";
 
 function Sidebar() {
   return (
-    <Box sx={{ display: "flex" }}>
-      <Drawer
-        variant="permanent"
-        anchor="left"
-        sx={{
-          width: DRAWERWIDTH,
-          flexShrink: 0,
-          "& .MuiDrawer-paper": {
+    <ThemeProvider theme={MyTheme}>
+      <Box sx={{ display: "flex" }}>
+        <Drawer
+          variant="permanent"
+          anchor="left"
+          sx={{
             width: DRAWERWIDTH,
-            boxSizing: "border-box",
-          },
-        }}
-      >
-        
+            flexShrink: 1,
+            "& .MuiDrawer-paper": {
+              width: DRAWERWIDTH,
+              boxSizing: "border-box",
+            },
+          }}
+        >
           <Toolbar>
             <IconButton
               edge="start"
@@ -40,14 +43,18 @@ function Sidebar() {
             </IconButton>
           </Toolbar>
           <Divider />
+
           <List>
-            {data.map((item, i) => (
-              <ListItem key={i}>{item.name}</ListItem>
+            {SidebarContents.map((item, i) => (
+              <ListItem sx={{ width: "100%" }}>
+                <Accordion title={item.title} content={item.content} />
+              </ListItem>
             ))}
-            {console.log(data)}
+            {/* <Accordion title={"Creator"} content="poop"></Accordion> */}
           </List>
-      </Drawer>
-    </Box>
+        </Drawer>
+      </Box>
+    </ThemeProvider>
   );
 }
 

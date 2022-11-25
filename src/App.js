@@ -8,7 +8,7 @@ import MyTheme from "./Theme/Theme";
 function App() {
   return (
     <ThemeProvider theme={MyTheme}>
-      <Box sx={{ display: "flex" }}>
+      <Box sx={{ display: "flex", backgroundColor: "#F8F6F0" }}>
         <Header />
         <Sidebar />
         <Box
